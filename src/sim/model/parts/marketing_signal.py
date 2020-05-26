@@ -17,9 +17,10 @@ def p_marketing_shock(params, substep, state_history, prev_state):
     """
     # Expected number of shocks
     # coded through parameter
-    freq = params['MARKETING_SHOCK_MAG']
+    freq = params['MARKETING_SHOCK_FREQ'] * 0.5
+
     # expected but randomized through poisson
-    if np.random.poisson(freq) > freq:
+    if np.random.poisson(freq) > params['MARKETING_SHOCK_FREQ']:
         shock = params['MARKETING_SHOCK_MAG']
     else:
         shock = 0

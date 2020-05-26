@@ -3,7 +3,10 @@ import numpy as np
 import itertools
 
 ### MARKETING PARAMETERS #################################
+# uniform distribution of marketing signalling
 MARKETING_STEADY = [500]
+
+# Noisy shock marketing signalling magnitude and expected frequency
 MARKETING_SHOCK_MAG = [1234]
 MARKETING_SHOCK_FREQ = [2]
 
@@ -16,7 +19,7 @@ EXO_EXPERIENCE = [140]
 SOURCE_POOL = [10000]
 
 ### INITIAL THRESHOLD VALUE PARAMETERS #################################
-THRESHOLD = [0.5]
+THRESHOLD = [20]
 
 factors = [MARKETING_STEADY,SOURCE_POOL]
 product = list(itertools.product(*factors))
