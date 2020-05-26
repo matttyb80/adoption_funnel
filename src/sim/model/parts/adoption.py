@@ -27,5 +27,8 @@ def s_adoption(params, substep, state_history, prev_state, policy_input):
     """
     key = 'adoption'
 
-    value = policy_input['reputation'] + policy_input['experience']
+    prev_state['adoption'].apply_signal(prev_state['signal'])
+    # value = policy_input['reputation'] + policy_input['experience']
+
+    value = prev_state['adoption']
     return (key, value)

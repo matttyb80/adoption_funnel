@@ -8,8 +8,8 @@ from .utils import *
 
 # Initial Values
 signal = 0
-state = 0
-# state = Adoption()
+# state = 0
+state = Adoption()
 ## Genesis States #################################################
 genesis_states = {
     'timestamp': datetime.strptime('2020-01-01 00:00:00', '%Y-%m-%d %H:%M:%S'),
