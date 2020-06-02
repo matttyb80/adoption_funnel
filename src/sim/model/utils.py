@@ -139,7 +139,7 @@ class Adoption_Pool(): #args
         Apply signal to reputation metric
         FILTER HERE OR BEFORE
         """  
-        # print(self.state['unaware'])
+        print(self.state['unaware'])
         if self.state['unaware']['reputation'] is None:
             self.state['unaware']['reputation'] = 0
 
@@ -191,7 +191,7 @@ class Adoption_Pool(): #args
                 if value['reputation'] < self.threshold:
             # NOT THRESHOLD BUT THRESHOLD*POOL
                     value['neg_drip'] = - delta * (value['reputation'] * value['pool'] - self.threshold * value['pool'])
-                    # value['reputation'] += delta * value['reputation']
+#                     value['reputation'] += delta * value['reputation']
         
 
     def update_pools(self, delta):
@@ -199,23 +199,27 @@ class Adoption_Pool(): #args
         Update pool from drip for each state
         """  
         for key, value in self.state.items():
+            print(key)
             if 'drip' in value.keys():
-                value['pool'] -= value['drip']
-                print('triggered 1', key)
-
+                
+                
+                # MUST USE == , NOT is in CADCAD
                 if key == 'unaware':
-                    print('triggered 2', key)
+                    print('triggered 2')
                     self.state['aware']['pool'] += value['drip']
                     self.state['aware']['reputation'] += delta * value['reputation']
-
+                    value['pool'] -= value['drip']
                 
                 elif key == 'aware':
                     self.state['adopted']['pool'] += value['drip']
                     self.state['adopted']['reputation'] += delta * value['reputation']
+                    value['pool'] -= value['drip']
+
                     
                 elif key == 'adopted':
                     self.state['loyal']['pool'] += value['drip']
                     self.state['loyal']['reputation'] += delta * value['reputation']
+                    value['pool'] -= value['drip']
 
                 
 #                 elif key is 'adopted': # AND NEGATIVE FLAG FOR NEGATIVE
@@ -229,6 +233,7 @@ class Adoption_Pool(): #args
                 elif key == 'churned':
                     self.state['adopted']['pool'] += value['drip']
                     self.state['adopted']['reputation'] += delta * value['reputation']
+                    value['pool'] -= value['drip']
 
                 
                 
@@ -238,11 +243,14 @@ class Adoption_Pool(): #args
                 
                                   
                 if key == 'adopted':
+                    print('neg drip adopted',value['neg_drip'])
                     self.state['churned']['pool'] += value['neg_drip']
                     self.state['churned']['reputation'] -= delta * value['reputation']
                     value['pool'] -= value['neg_drip']
+                    value['neg_drip'] = 0
                 
                 elif key == 'loyal': # AND NEGATIVE FLAG FOR NEGATIVE
+                    print('neg drip loyal',value['neg_drip'])
                     self.state['adopted']['pool'] += value['neg_drip']
                     self.state['adopted']['reputation'] -= delta * value['reputation']
                     value['pool'] -= value['neg_drip']
@@ -255,7 +263,7 @@ class Adoption_Pool(): #args
 #                 elif key is 'churned':
 #                     self.state['adopted']['pool'] += value['drip']
                 
-                value['neg_drip'] = 0
+                    value['neg_drip'] = 0
                 
 
     
