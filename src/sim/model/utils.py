@@ -122,7 +122,7 @@ class Adoption_Pool(): #args
         Unaware state
         """        
 
-        self.state = {'unaware': {'pool': pool, 'reputation': None},
+        self.state = {'unaware': {'pool': pool, 'reputation': None,},
                       'aware': {'pool': 0, 'reputation': None},
                       'adopted': {'pool': 0, 'reputation': None},
                       'loyal': {'pool': 0, 'reputation': None},
@@ -149,7 +149,7 @@ class Adoption_Pool(): #args
 
         elif signal < 0: 
             self.state['unaware']['reputation'] -=  1
-
+        
             
         
     def apply_experience(self, experience):
@@ -162,7 +162,51 @@ class Adoption_Pool(): #args
         if experience < 0: 
             self.reputation -=  1
             
-
+    
+    def calculate_drip(self):
+        """
+        Calculate drip for each state
+        """  
+        for key, value in self.state.items():
+            if value['reputation'] is not None:
+                # NOT THRESHOLD NUT THRESHOLD*POOL
+                value['drip'] = value['reputation'] * value['pool'] - self.threshold * value['pool'] # TOO BIG
+                
+    def update_pools(self):
+        """
+        Update pool from drip for each state
+        """  
+        for key, value in self.state.items():
+            if 'drip' in value.keys():
+                value['pool'] -= value['drip']
+                
+                
+                if key is 'unaware':
+                    self.state['aware']['pool'] += value['drip']
+                
+                elif key is 'aware':
+                    self.state['adopted']['pool'] += value['drip']
+                    
+                elif key is 'adopted':
+                    self.state['loyal']['pool'] += value['drip']
+                
+                elif key is 'adopted': # AND NEGATIVE FLAG FOR NEGATIVE
+                    self.state['churned']['pool'] += value['drip']
+                    
+                elif key is 'loyal':
+                    self.state['adopted']['pool'] += value['drip']
+                    
+                elif key is 'churned':
+                    self.state['adopted']['pool'] += value['drip']
+                
+                value['drip'] = 0
+                
+                
+#         for key, value in self.state.items():
+#             print(value)
+#             if 'drip' in value.keys():
+#                 value['drip'] = 0
+    
     def determine_state(self, reputation=None, threshold= None):
         """
         Uses reputation and threshold to determine state
