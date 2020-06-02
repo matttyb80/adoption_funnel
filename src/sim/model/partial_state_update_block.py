@@ -22,6 +22,8 @@ partial_state_update_block = [
         },
         'variables': {
             'adoption': s_adoption,
+            'pool': s_pool,
+
         }
     },
 

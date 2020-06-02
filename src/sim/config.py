@@ -12,6 +12,7 @@ from cadCAD import configs
 import scipy.stats as stats
 import networkx as nx
 import numpy as np
+# from .utils import *
 
 # if test notebook is in /src
 # from model.state_variables import genesis_states
@@ -32,3 +33,17 @@ append_configs(
     initial_state=genesis_states,
     partial_state_update_blocks=partial_state_update_block
 )
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # GENESIS SWEEP LOGIC # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+for c in configs: # for each configuration object
+    c.initial_state = deepcopy(c.initial_state) # make a deepcopy of the initial state dict (it's shared across configs by default)
+    # for k in c.initial_state: # for each state variable
+    #     if k in c.sim_config['M']: # if there is a param with the same name in the params dict
+    #         c.initial_state[k] = c.sim_config['M'][k] # assign the param value to the initial value of the state variable
+
+    c.initial_state['pool'] = Adoption_Pool(c.sim_config['M']['SOURCE_POOL'])
+    # c.initial_state['network']  = init_network(c.initial_state['network'], c.sim_config['M'])

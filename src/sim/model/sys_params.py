@@ -16,7 +16,7 @@ MARKETING_SHOCK_FREQ = [2]
 EXO_EXPERIENCE = [140]
 
 ### POPULATION POOL PARAMETERS #################################
-SOURCE_POOL = [10000]
+SOURCE_POOL = [10000] #, 12]
 
 ### INITIAL THRESHOLD VALUE PARAMETERS #################################
 THRESHOLD = [20]

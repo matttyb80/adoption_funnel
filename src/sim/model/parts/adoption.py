@@ -26,10 +26,27 @@ def s_adoption(params, substep, state_history, prev_state, policy_input):
     State for generating signal from marketing.
     """
     key = 'adoption'
+    # set pools
+
 
     prev_state['adoption'].apply_signal(prev_state['signal'])
     # value = policy_input['reputation'] + policy_input['experience']
     prev_state['adoption'].set_threshold(params['THRESHOLD'])
     prev_state['adoption'].determine_state(prev_state['signal'])
     value = prev_state['adoption']
+    return (key, value)
+
+def s_pool(params, substep, state_history, prev_state, policy_input):
+    """
+    State for generating signal from marketing.
+    """
+    key = 'pool'
+    # set pools
+    
+
+    prev_state['pool'].apply_signal(prev_state['signal'])
+    # value = policy_input['reputation'] + policy_input['experience']
+    prev_state['pool'].set_threshold(params['THRESHOLD'])
+    prev_state['pool'].determine_state(prev_state['signal'])
+    value = prev_state['pool']
     return (key, value)

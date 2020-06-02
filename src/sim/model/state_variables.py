@@ -13,6 +13,7 @@ from .utils import *
 signal = 0
 # state = 0
 adoption = Adoption()
+# pool = Adoption_Pool()
 
 # state
 state = []
@@ -21,7 +22,8 @@ genesis_states = {
     'timestamp': datetime.strptime('2020-01-01 00:00:00', '%Y-%m-%d %H:%M:%S'),
     'signal': signal,
     'adoption': adoption,
-    'state' : state
+    'state' : state,
+    # 'pool' : pool,
 
 
 }

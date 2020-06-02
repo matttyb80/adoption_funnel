@@ -45,6 +45,8 @@ class Adoption(): #args
         """
         Uses reputation and threshold to determine state
         """  
+        
+
         if threshold is None:
             threshold = self.threshold
             
@@ -107,37 +109,46 @@ class Adoption(): #args
         """
         return str(self.__class__) + ": " + str(self.__dict__)
 
-
 class Adoption_Pool(): #args
     """
     Adoption class for defining state of network adoption
-    This is agent flavored, where each instance has an individualized reputation belief
+    This is class is on the subpopulation level, where each state maitains a count of members
+    and a mean of reputation in the addoption funnel
     and threshold transition value
     """  
-    def __init__(self):
+    def __init__(self, pool):
         """
         Adoption class initialized without a preset reputation
         Unaware state
         """        
-        self.reputation = None
-        self.state = 'unaware'
-        self.pool = 0
+
+        self.state = {'unaware': {'pool': pool, 'reputation': None},
+                      'aware': {'pool': 0, 'reputation': None},
+                      'adopted': {'pool': 0, 'reputation': None},
+                      'loyal': {'pool': 0, 'reputation': None},
+                      'churned': {'pool': 0, 'reputation': None},
+                    }
+        # self.state.pool = pool
+        # self.pool = pool
+        # self.reputation = None
+        self.threshold = 1
 
  # when signal reaches above filtered threshold       
     def apply_signal(self, signal):
         """
         Apply signal to reputation metric
         """  
-        if self.reputation is None:
-            self.reputation = 0
-            self.state = 'aware'
+        print(self.state['unaware'])
+        if self.state['unaware']['reputation'] is None:
+            self.state['unaware']['reputation'] = 0
+
         if signal == 0: 
-            self.reputation =  0
+            self.state['unaware']['reputation']  =  0
         elif signal > 0: 
-            self.reputation +=  1
-            
+            self.state['unaware']['reputation'] +=  1
+
         elif signal < 0: 
-            self.reputation -=  1
+            self.state['unaware']['reputation'] -=  1
 
             
         
