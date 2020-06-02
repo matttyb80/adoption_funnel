@@ -16,16 +16,22 @@ MARKETING_SHOCK_FREQ = [2]
 EXO_EXPERIENCE = [140]
 
 ### POPULATION POOL PARAMETERS #################################
-SOURCE_POOL = [10000] #, 12]
+SOURCE_POOL = [100000] #, 12]
 
 ### INITIAL THRESHOLD VALUE PARAMETERS #################################
 THRESHOLD = [20]
+LEAK_COEFFICIENT = [0.025]
+
+
+#### USE ONLY FOR A/B WITH PARAMETER SWEEPS OR MULTIPLE PARAMETER SWEEPS #####
 
 factors = [MARKETING_STEADY,SOURCE_POOL]
 product = list(itertools.product(*factors))
 MARKETING_STEADY,SOURCE_POOL = zip(*product)
 MARKETING_STEADY = list(MARKETING_STEADY)
 SOURCE_POOL = list(SOURCE_POOL)
+
+
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 sys_params = {
@@ -35,4 +41,5 @@ sys_params = {
    'EXO_EXPERIENCE': EXO_EXPERIENCE,
    'SOURCE_POOL': SOURCE_POOL,
    'THRESHOLD': THRESHOLD, 
+   'LEAK_COEFFICIENT': LEAK_COEFFICIENT,
 }

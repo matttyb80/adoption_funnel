@@ -45,8 +45,15 @@ def s_pool(params, substep, state_history, prev_state, policy_input):
     
 
     prev_state['pool'].apply_signal(prev_state['signal'])
+
+
     # value = policy_input['reputation'] + policy_input['experience']
-    prev_state['pool'].set_threshold(params['THRESHOLD'])
-    prev_state['pool'].determine_state(prev_state['signal'])
+    # prev_state['pool'].set_threshold(params['THRESHOLD'])
+
+    prev_state['pool'].calculate_drip(params['LEAK_COEFFICIENT'])
+    print(prev_state['pool'])
+    prev_state['pool'].update_pools(params['LEAK_COEFFICIENT'])
+    print(prev_state['pool'])
+    # prev_state['pool'].determine_state(prev_state['signal'])
     value = prev_state['pool']
     return (key, value)
