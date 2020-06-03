@@ -4,10 +4,11 @@ import itertools
 
 ### MARKETING PARAMETERS #################################
 # uniform distribution of marketing signalling
-MARKETING_STEADY = [500]
+SPEND = 15000/30
+MARKETING_STEADY = [SPEND]
 
 # Noisy shock marketing signalling magnitude and expected frequency
-MARKETING_SHOCK_MAG = [1234]
+MARKETING_SHOCK_MAG = [500]
 MARKETING_SHOCK_FREQ = [2]
 
 ### EXTERNAL EXPERIENCE PARAMETERS #################################
@@ -21,7 +22,7 @@ SOURCE_POOL = [100000] #, 12]
 ### INITIAL THRESHOLD VALUE PARAMETERS #################################
 THRESHOLD = [3]
 LEAK_COEFFICIENT = [0.025]
-
+RESPONSE = [0.001]
 
 #### USE ONLY FOR A/B WITH PARAMETER SWEEPS OR MULTIPLE PARAMETER SWEEPS #####
 
@@ -44,4 +45,5 @@ sys_params = {
    'SOURCE_POOL': SOURCE_POOL,
    'THRESHOLD': THRESHOLD, 
    'LEAK_COEFFICIENT': LEAK_COEFFICIENT,
+   'RESPONSE': RESPONSE,
 }

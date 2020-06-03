@@ -13,7 +13,7 @@ class Adoption(): #args
         self.state = 'unaware'
 
  # when signal reaches above filtered threshold       
-    def apply_signal(self, signal):
+    def apply_signal(self, signal, response):
         """
         Apply signal to reputation metric
         """  
@@ -23,10 +23,10 @@ class Adoption(): #args
         if signal == 0: 
             self.reputation =  0
         elif signal > 0: 
-            self.reputation +=  1
+            self.reputation +=  signal*response
             
         elif signal < 0: 
-            self.reputation -=  1
+            self.reputation -=  signal*response
 
             
         
@@ -134,7 +134,7 @@ class Adoption_Pool(): #args
         self.threshold = 0.5
 
  # when signal reaches above filtered threshold       
-    def apply_signal(self, signal):
+    def apply_signal(self, signal, response):
         """
         Apply signal to reputation metric
         FILTER HERE OR BEFORE
@@ -146,10 +146,10 @@ class Adoption_Pool(): #args
         if signal == 0: 
             self.state['unaware']['reputation']  =  0
         elif signal > 0: 
-            self.state['unaware']['reputation'] +=  1
+            self.state['unaware']['reputation'] += signal * response
 
         elif signal < 0: 
-            self.state['unaware']['reputation'] -=  1
+            self.state['unaware']['reputation'] -=  signal * response
         
             
         

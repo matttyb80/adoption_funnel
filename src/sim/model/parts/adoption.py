@@ -40,7 +40,7 @@ def s_pool(params, substep, state_history, prev_state, policy_input):
     """
     key = 'pool'
     
-    prev_state['pool'].apply_signal(prev_state['signal'])
+    prev_state['pool'].apply_signal(prev_state['signal'], params['RESPONSE'])
 
 
     # value = policy_input['reputation'] + policy_input['experience']
