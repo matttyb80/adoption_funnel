@@ -296,7 +296,8 @@ class Adoption_Pool(): #args
         """
         Set threshold to current state
         """  
-
+        if ext_threshold is not None:
+            self.threshold = ext_threshold
         if self.state == 'unaware':
             if ext_threshold is not None:
                 self.threshold = ext_threshold

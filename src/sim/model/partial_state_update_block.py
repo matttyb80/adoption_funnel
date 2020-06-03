@@ -21,8 +21,8 @@ partial_state_update_block = [
             'experience' : p_experience,
         },
         'variables': {
-            'adoption': s_adoption,
-            'pool': s_pool,
+            # 'adoption': s_adoption, # AGENT BASED
+            'pool': s_pool,           # SUB POPULATION BASED
 
         }
     },
