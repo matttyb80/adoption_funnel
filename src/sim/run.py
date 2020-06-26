@@ -45,6 +45,12 @@ raw_system_events, tensor_field, sessions = simulation.execute()
 # Result System Events DataFrame
 df = pd.DataFrame(raw_system_events)
 
+def run():
+
+    # params = configs[i].sim_config['M']
+    # result_record = pd.DataFrame.from_records([tuple([i for i in params.values()])], columns=list(params.keys()))
+    return df
+
 # def run(drop_midsteps=True):
 #
 #     exec_mode = ExecutionMode()
