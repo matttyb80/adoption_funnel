@@ -4,6 +4,7 @@ from . import config
 from cadCAD import configs
 import pandas as pd
 
+# cadCAD 0.3.1
 def run(drop_midsteps=True):
     exec_mode = ExecutionMode()
     multi_proc_ctx = ExecutionContext(context=exec_mode.multi_proc)
@@ -25,3 +26,33 @@ def run(drop_midsteps=True):
         results = results.append(result_record)
         i += 1
     return results.reset_index()
+
+# import matplotlib.pyplot as plt
+# import seaborn as sns
+# import numpy as np
+# import pandas as pd
+# from model.parts.supportingFunctions import *
+# pd.options.display.float_format = '{:.2f}'.format
+# %matplotlib inline
+# from model import economyconfig 
+
+from cadCAD.engine import ExecutionMode, ExecutionContext
+exec_mode = ExecutionMode()
+local_mode_ctx = ExecutionContext(context=exec_mode.local_mode)
+from cadCAD.engine import Executor
+from cadCAD import configs
+simulation = Executor(exec_context=local_mode_ctx, configs=configs)
+raw_system_events, tensor_field, sessions = simulation.execute()
+# Result System Events DataFrame
+df = pd.DataFrame(raw_system_events)
+
+# def run(drop_midsteps=True):
+
+#     exec_mode = ExecutionMode()
+#     local_mode_ctx = ExecutionContext(context=exec_mode.local_mode)
+
+#     simulation = Executor(exec_context=local_mode_ctx, configs=configs)
+#     raw_system_events, tensor_field, sessions = simulation.execute()
+
+#     df = pd.DataFrame(raw_system_events)
+#     return df

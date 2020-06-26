@@ -12,6 +12,9 @@ from cadCAD import configs
 import scipy.stats as stats
 import networkx as nx
 import numpy as np
+
+from typing import Dict, List
+
 # from .utils import *
 
 # if test notebook is in /src
@@ -20,6 +23,8 @@ import numpy as np
 # from model.sys_params import sys_params as sys_params_A
 
 from .sim_setup import SIMULATION_TIME_STEPS, MONTE_CARLO_RUNS
+
+# sys_params: Dict[str, List[int]] = sys_params
 
 sim_config = config_sim (
     {
