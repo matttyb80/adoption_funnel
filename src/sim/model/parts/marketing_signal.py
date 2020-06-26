@@ -4,7 +4,7 @@ import numpy as np
 from ..utils import *
 
 def p_marketing_rate(params, substep, state_history, prev_state):
-    params = params[0]
+    # params = params[0]
     """
     Policy for steady marketing spend signal generation.
     """
@@ -18,7 +18,7 @@ def p_marketing_shock(params, substep, state_history, prev_state):
     """
     # Expected number of shocks
     # coded through parameter
-    params = params[0]
+    # params = params[0]
     freq = params['MARKETING_SHOCK_FREQ'] * 0.5
 
     # expected but randomized through poisson

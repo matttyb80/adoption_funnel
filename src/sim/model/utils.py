@@ -399,7 +399,7 @@ class Adoption_Pool(): #args
     #                 if key is 'unaware':
                 if value['reputation'] > self.threshold:
             # NOT THRESHOLD BUT THRESHOLD*POOL
-                    value['drip'] = delta * (value['reputation'] * value['pool'] - self.threshold * value['pool'])
+                    value['drip'] = delta * (value['reputation'] * value['pool'] - self.threshold * value['pool']) / value['reputation'] 
 
                     # value['reputation'] -= delta * value['reputation']
 
