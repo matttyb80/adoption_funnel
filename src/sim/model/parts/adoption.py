@@ -1,4 +1,4 @@
-import networkx as nx
+# import networkx as nx
 import numpy as np
 
 from ..utils import *
@@ -7,6 +7,7 @@ def p_reputation(params, substep, state_history, prev_state):
     """
     Policy for steady marketing spend signal generation.
     """
+    params = params[0]
     constant = params['THRESHOLD']
     random = np.random.normal(params['THRESHOLD'], scale = 1.0)
     return {'reputation': constant}
@@ -16,6 +17,7 @@ def p_experience(params, substep, state_history, prev_state):
     """
     Policy for steady marketing spend signal generation.
     """
+    params = params[0]
     constant = params['EXO_EXPERIENCE']
     random = np.random.normal(params['EXO_EXPERIENCE'], scale = 1.0)
     return {'experience': constant}
@@ -38,6 +40,7 @@ def s_pool(params, substep, state_history, prev_state, policy_input):
     """
     State for generating signal from marketing.
     """
+    params = params[0]
     key = 'pool'
     
     prev_state['pool'].apply_signal(prev_state['signal'])

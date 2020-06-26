@@ -1,10 +1,9 @@
 # The following imports NEED to be in the exact order
 from cadCAD.engine import ExecutionMode, ExecutionContext, Executor
-from . import config
+from src.sim import config
 from cadCAD import configs
 import pandas as pd
 
-# cadCAD 0.3.1
 def run(drop_midsteps=True):
     exec_mode = ExecutionMode()
     multi_proc_ctx = ExecutionContext(context=exec_mode.multi_proc)
@@ -47,12 +46,12 @@ raw_system_events, tensor_field, sessions = simulation.execute()
 df = pd.DataFrame(raw_system_events)
 
 # def run(drop_midsteps=True):
-
+#
 #     exec_mode = ExecutionMode()
 #     local_mode_ctx = ExecutionContext(context=exec_mode.local_mode)
-
+#
 #     simulation = Executor(exec_context=local_mode_ctx, configs=configs)
 #     raw_system_events, tensor_field, sessions = simulation.execute()
-
+#
 #     df = pd.DataFrame(raw_system_events)
 #     return df
