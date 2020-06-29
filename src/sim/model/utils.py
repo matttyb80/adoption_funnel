@@ -365,7 +365,7 @@ class Adoption_Pool(): #args
         Apply signal to reputation metric
         FILTER HERE OR BEFORE
         """  
-        print(self.state['unaware'])
+        # print(self.state['unaware'])
         if self.state['unaware']['reputation'] is None:
             self.state['unaware']['reputation'] = 0
 
@@ -426,13 +426,13 @@ class Adoption_Pool(): #args
         Update pool from drip for each state
         """  
         for key, value in self.state.items():
-            print(key)
+            # print(key)
             if 'drip' in value.keys():
                 
                 
                 # MUST USE == , NOT is in CADCAD
                 if key == 'unaware':
-                    print('triggered 2')
+                    # print('triggered 2')
   
                     self.state['aware']['reputation'] = ((self.state['aware']['pool'] * self.state['aware']['reputation']) + (delta * value['reputation'] *  value['drip'])) / (self.state['aware']['pool'] + value['drip'])
                     value['reputation'] = ((value['pool'] * value['reputation']) - (delta * value['reputation'] *  value['drip'])) / (value['pool'] - value['drip'])
@@ -476,14 +476,14 @@ class Adoption_Pool(): #args
                 
                                   
                 if key == 'adopted':
-                    print('neg drip adopted',value['neg_drip'])
+                    # print('neg drip adopted',value['neg_drip'])
                     self.state['churned']['pool'] += value['neg_drip']
                     self.state['churned']['reputation'] -= delta * value['reputation']
                     value['pool'] -= value['neg_drip']
                     value['neg_drip'] = 0
                 
                 elif key == 'loyal': # AND NEGATIVE FLAG FOR NEGATIVE
-                    print('neg drip loyal',value['neg_drip'])
+                    # print('neg drip loyal',value['neg_drip'])
                     self.state['adopted']['pool'] += value['neg_drip']
                     self.state['adopted']['reputation'] -= delta * value['reputation']
                     value['pool'] -= value['neg_drip']
