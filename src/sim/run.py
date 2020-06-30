@@ -7,7 +7,7 @@ import pprint
 
 ###################################
 from src.sim import config
-from cadCAD import configs
+# from cadCAD import configs
 import pandas as pd
 
 # RUN on 0.3.15
@@ -42,7 +42,34 @@ import pandas as pd
 # %matplotlib inline
 # from model import economyconfig 
 
+def extract_params(configs,hyperparameter):
+    '''
+    Description:
+    Function to extract param sweep information from simulation configuration
+    
+    Parameters:
+    configs: cadCAD configs object
+    hyperparameter: string of the hyperparameter being swept
+    
+    Assumptions:
+    Parameter sweep simulation with M as how is denoted in the sim config.
+    
+    from cadCAD.configuration.utils import configs_as_objs
 
+    Returns
+    
+    list of parameter
+    
+    Example run:
+    params = extract_params(configs,'drip_frequency')
+    '''
+
+    params = []
+    
+    for i in range(0,len(configs_as_objs(configs))):
+        params.append(configs_as_objs(configs)[i].sim_config['M'][hyperparameter])
+        
+    return params
 
 
 from cadCAD.engine import ExecutionMode, ExecutionContext
@@ -62,6 +89,9 @@ print(fmt_configs)
 # pprint(fmt_configs[0].sim_config)
 # Result System Events DataFrame
 df = pd.DataFrame(raw_system_events)
+params = extract_params(configs,'THRESHOLD')
+
+
 
 def run():
     # configs_dicts: list = configs_as_dicts(configs)
@@ -80,12 +110,22 @@ def run():
 #         i += 1
 # #     return results.reset_index()
 
+    # from cadCAD.engine import ExecutionMode, ExecutionContext
+    # exec_mode = ExecutionMode()
+    # local_mode_ctx = ExecutionContext(context=exec_mode.local_mode)
+    # from cadCAD.engine import Executor
+    # from cadCAD import configs
+    # simulation = Executor(exec_context=local_mode_ctx, configs=configs)
+    # raw_system_events, tensor_field, sessions = simulation.execute()
+    # print(configs_as_objs(configs))
 
 
+
+    # params = extract_params(configs,'THRESHOLD')
     
 #     # params = configs[i].sim_config['M']
 #     df = pd.DataFrame.from_records([tuple([i for i in params.values()])], columns=list(params.keys()))
-    return df, tensor_field, sessions
+    return df, tensor_field, sessions, params
 
 # def run(drop_midsteps=True):
 #
