@@ -27,7 +27,7 @@ print(fmt_configs)
 # pprint(fmt_configs[0].sim_config)
 # Result System Events DataFrame
 df = pd.DataFrame(raw_system_events)
-params = extract_params(configs,'THRESHOLD')
+# params = extract_params(configs,'THRESHOLD')
 
 
 
