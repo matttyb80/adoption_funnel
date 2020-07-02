@@ -1,7 +1,7 @@
 # import networkx as nx
 import numpy as np
 
-from ..utils import *
+from src.sim.model.utils import *
 
 def p_reputation(params, substep, state_history, prev_state):
     """
@@ -43,7 +43,11 @@ def s_pool(params, substep, state_history, prev_state, policy_input):
     # params = params[0]
     key = 'pool'
     
-    prev_state['pool'].apply_signal(prev_state['signal'])
+    # if filtered response
+    prev_state['pool'].apply_signal(prev_state['signal'], params['RESPONSE'])
+
+    # if not filtered response
+    # prev_state['pool'].apply_signal(prev_state['signal'])
 
 
     # value = policy_input['reputation'] + policy_input['experience']

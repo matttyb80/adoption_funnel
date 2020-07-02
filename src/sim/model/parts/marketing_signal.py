@@ -1,7 +1,7 @@
 # import networkx as nx
 import numpy as np
 
-from ..utils import *
+from src.sim.model.utils import *
 
 def p_marketing_rate(params, substep, state_history, prev_state):
     # params = params[0]
