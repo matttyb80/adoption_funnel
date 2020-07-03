@@ -1,4 +1,6 @@
 # import networkx as nx
+from pprint import pprint
+
 import numpy as np
 import itertools
 

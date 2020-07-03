@@ -26,7 +26,7 @@ from src.sim.sim_setup import SIMULATION_TIME_STEPS, MONTE_CARLO_RUNS
 
 # sys_params: Dict[str, List[int]] = sys_params
 
-sim_config = config_sim (
+sim_config = config_sim(
     {
         'N': MONTE_CARLO_RUNS, 
         'T': range(SIMULATION_TIME_STEPS), # number of timesteps
