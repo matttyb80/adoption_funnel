@@ -23,6 +23,7 @@ config_ids = [
 ]
 
 def run(drop_midsteps=True):
+    print('config_ids = ', config_ids)
     result_records_list, sim_id_records = [], []
     results = pd.DataFrame()
     sim_ids = list(set([_id['simulation_id'] for _id in config_ids]))
@@ -38,6 +39,8 @@ def run(drop_midsteps=True):
             result_records_list.append(mod_record)
 
         sim_id = config_id['simulation_id']
+        print('sim id first loop = ',sim_id)
+
         sub_df = df[df.simulation == config_id['simulation_id']][df.run == config_id['run_id'] + 1]
         sim_dfs[sim_id].append(sub_df)
         # print(sub_df[['simulation', 'run', 'substep', 'timestep']].tail(5))
@@ -48,6 +51,7 @@ def run(drop_midsteps=True):
         sim_dfs[sim_id] = pd.concat(sim_dfs[sim_id])
         sub_df = sim_dfs[sim_id]
 
+        print('sim id second loop = ',sim_id)
         # keep only last substep of each timestep
         if drop_midsteps:
             max_substep = max(sub_df.substep)
