@@ -1,5 +1,5 @@
-from .parts.marketing_signal import *
-from .parts.adoption import *
+from src.sim.model.parts.marketing_signal import *
+from src.sim.model.parts.adoption import *
 
 partial_state_update_block = [
     {

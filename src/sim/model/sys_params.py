@@ -1,4 +1,6 @@
-import networkx as nx
+# import networkx as nx
+from pprint import pprint
+
 import numpy as np
 import itertools
 
@@ -19,8 +21,8 @@ EXO_EXPERIENCE = [140]
 SOURCE_POOL = [100000] #, 12]
 
 ### INITIAL THRESHOLD VALUE PARAMETERS #################################
-THRESHOLD = [3]
-LEAK_COEFFICIENT = [0.025]
+THRESHOLD = [0.1, 1, 2, 3]
+LEAK_COEFFICIENT = [0.01]
 
 
 #### USE ONLY FOR A/B WITH PARAMETER SWEEPS OR MULTIPLE PARAMETER SWEEPS #####

@@ -4,8 +4,8 @@ import numpy as np
 
 # from copy import deepcopy
 # import scipy.stats as stats
-from .sys_params import sys_params
-from .utils import *
+# from .sys_params import sys_params
+from src.sim.model.utils import *
 
 # Initial Values
 signal = 0
