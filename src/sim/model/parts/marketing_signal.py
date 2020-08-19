@@ -3,7 +3,7 @@ import numpy as np
 
 # from ..utils import *
 
-def p_marketing_rate(params, substep, state_history, prev_state):
+def p_marketing_rate(params, substep, state_history, prev_state, **kwargs):
     # params = params[0]
     """
     Policy for steady marketing spend signal generation.
@@ -12,7 +12,7 @@ def p_marketing_rate(params, substep, state_history, prev_state):
     random = np.random.normal(params['MARKETING_STEADY'], scale = 1.0)
     return {'steady_signal': constant}
 
-def p_marketing_shock(params, substep, state_history, prev_state):
+def p_marketing_shock(params, substep, state_history, prev_state, **kwargs):
     """
     Policy for shock marketing (spend and other sources).
     """

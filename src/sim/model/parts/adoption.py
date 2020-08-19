@@ -3,7 +3,7 @@ import numpy as np
 
 # from ..utils import *
 
-def p_reputation(params, substep, state_history, prev_state):
+def p_reputation(params, substep, state_history, prev_state, **kwargs):
     """
     Policy for steady marketing spend signal generation.
     """
@@ -13,7 +13,7 @@ def p_reputation(params, substep, state_history, prev_state):
     return {'reputation': constant}
 
 
-def p_experience(params, substep, state_history, prev_state):
+def p_experience(params, substep, state_history, prev_state, **kwargs):
     """
     Policy for steady marketing spend signal generation.
     """
