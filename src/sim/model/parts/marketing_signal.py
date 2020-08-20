@@ -28,7 +28,7 @@ def p_marketing_shock(params, substep, state_history, prev_state, **kwargs):
         shock = 0
     return {'shock_signal': shock}
 
-def s_signal(params, substep, state_history, prev_state, policy_input):
+def s_signal(params, substep, state_history, prev_state, policy_input, **kwargs):
     """
     State for generating signal from marketing.
     """

@@ -23,7 +23,7 @@ def p_experience(params, substep, state_history, prev_state, **kwargs):
     return {'experience': constant}
 
 
-def s_adoption(params, substep, state_history, prev_state, policy_input):
+def s_adoption(params, substep, state_history, prev_state, policy_input, **kwargs):
     """
     State for generating signal from marketing.
     """
@@ -36,7 +36,7 @@ def s_adoption(params, substep, state_history, prev_state, policy_input):
     value = prev_state['adoption']
     return (key, value)
 
-def s_pool(params, substep, state_history, prev_state, policy_input):
+def s_pool(params, substep, state_history, prev_state, policy_input, **kwargs):
     """
     State for generating signal from marketing.
     """
